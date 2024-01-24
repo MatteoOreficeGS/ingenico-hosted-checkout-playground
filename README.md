@@ -1,4 +1,4 @@
-# How to
+# How to run test
 
 1. Edit .env to change API_KEY/API_SECRET
 2. [Optional]: edit also RETURN_URL, a working URL is not required
