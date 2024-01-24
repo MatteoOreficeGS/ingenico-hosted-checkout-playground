@@ -73,6 +73,7 @@ printf("RETURNMAC         : %s\n",$response->RETURNMAC);
 printf("partialRedirectUrl: %s\n",$response->partialRedirectUrl);
 printf("merchantReference : %s\n",$response->merchantReference?:'merchantReference is EMPTY !!');
 printf("\nPlease, complete payment on: %s\n\n",'https://payment.'.$response->partialRedirectUrl);
+printf("Select VISA payment method\n");
 printf("Use this CC number test case : %s\n",'4012000033330026');
 printf("Use this CC CCV : %s\n",'123');
 printf("Use this CC expiry date : %s\n",'0624');
