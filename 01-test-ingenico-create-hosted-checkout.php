@@ -77,4 +77,5 @@ printf("Select VISA payment method\n");
 printf("Use this CC number test case : %s\n",'4012000033330026');
 printf("Use this CC CCV : %s\n",'123');
 printf("Use this CC expiry date : %s\n",'0624');
-printf("\nCall this php script after completing online payment\n> 02-test-ingenico-get-status.php %s\n", $response->hostedCheckoutId);
+printf("\nCall this php script after completing online payment\n> php 02-test-ingenico-get-status.php %s\n",
+    $response->hostedCheckoutId);
