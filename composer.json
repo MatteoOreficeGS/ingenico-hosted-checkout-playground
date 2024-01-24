@@ -1,0 +1,20 @@
+{
+    "name": "gpsed/ingenico-test",
+    "type": "project",
+    "require": {
+        "ingenico-epayments/connect-sdk-php": "^6.20",
+        "nesbot/carbon": "^2.72",
+        "vlucas/phpdotenv": "^5.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Gpsed\\IngenicoTest\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Matteo Orefice",
+            "email": "orefice@gsped.com"
+        }
+    ]
+}
