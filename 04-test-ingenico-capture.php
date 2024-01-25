@@ -34,9 +34,11 @@ $body = new \Ingenico\Connect\Sdk\Domain\Payment\ApprovePaymentRequest();
 $body->directDebitPaymentMethodSpecificInput = new
 \Ingenico\Connect\Sdk\Domain\Payment\Definitions\ApprovePaymentDirectDebitPaymentMethodSpecificInput();
 
+//$body->directDebitPaymentMethodSpecificInput->token = $argv[1];
 $body->directDebitPaymentMethodSpecificInput->dateCollect = \Carbon\Carbon::now()->format('Ymd');
 
 $body->order = $order;
+$body = new \Ingenico\Connect\Sdk\Domain\Payment\CapturePaymentRequest();
 $body->amount = 3500;
-$response = $client->merchant("1221")->payments()->approve($argv[1], $body);
+$response = $client->merchant("1221")->payments()->capture($argv[1], $body);
 var_dump($response->toJson());

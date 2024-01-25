@@ -57,7 +57,9 @@ $hcsi->showResultPage = true;
 $body->hostedCheckoutSpecificInput = $hcsi;
 $body->hostedCheckoutSpecificInput->paymentProductFilters = new \Ingenico\Connect\Sdk\Domain\Hostedcheckout\Definitions\PaymentProductFiltersHostedCheckout();
 $body->hostedCheckoutSpecificInput->paymentProductFilters->restrictTo = new \Ingenico\Connect\Sdk\Domain\Definitions\PaymentProductFilter();
-$body->hostedCheckoutSpecificInput->paymentProductFilters->restrictTo->groups = ['cards'];
+//$body->hostedCheckoutSpecificInput->paymentProductFilters->restrictTo->groups = ['cards'];
+$body->hostedCheckoutSpecificInput->paymentProductFilters->restrictTo->products = [1];
+
 
 
 $response = $client->merchant("1221")->hostedcheckouts()->create($body);
