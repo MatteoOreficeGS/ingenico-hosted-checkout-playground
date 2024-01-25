@@ -31,6 +31,8 @@ $response = $client->merchant("1221")->hostedcheckouts()->get($argv[1]);
 printf("hostedCheckoutId                    : %s\n",$argv[1]);
 printf("status                              : %s\n",$response->status);
 printf("payment.status                      : %s\n",$response->createdPaymentOutput->payment->status);
+printf("payment.statusOutput.statusCategory : %s\n",$response->createdPaymentOutput->payment->statusOutput->statusCategory);
+printf("payment.statusOutput.isAuthorized   : %s\n",$response->createdPaymentOutput->payment->statusOutput->isAuthorized);
 printf("tokens                              : %s\n",$response->createdPaymentOutput->tokens);
 printf("tokenizationSucceeded               : %s\n",$response->createdPaymentOutput->tokenizationSucceeded);
 
