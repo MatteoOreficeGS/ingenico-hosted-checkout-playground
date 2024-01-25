@@ -33,12 +33,11 @@ $amountOfMoney->amount = 3500;
 $amountOfMoney->currencyCode = "USD";
 
 $billingAddress = new \Ingenico\Connect\Sdk\Domain\Definitions\Address();
-$billingAddress->countryCode = "US";
+$billingAddress->countryCode = "IT";
 
 $customer = new \Ingenico\Connect\Sdk\Domain\Payment\Definitions\Customer();
 $customer->locale = "it_IT";
 $customer->billingAddress = $billingAddress;
-$customer->merchantCustomerId = '1221';
 
 $order = new OrderAlias();
 $order->amountOfMoney = $amountOfMoney;
@@ -56,6 +55,10 @@ $hcsi = new \Ingenico\Connect\Sdk\Domain\Hostedcheckout\Definitions\HostedChecko
 $hcsi->returnUrl = $_ENV['RETURN_URL'] ?? 'https://www.gsped.it';
 $hcsi->showResultPage = true;
 $body->hostedCheckoutSpecificInput = $hcsi;
+$body->hostedCheckoutSpecificInput->paymentProductFilters = new \Ingenico\Connect\Sdk\Domain\Hostedcheckout\Definitions\PaymentProductFiltersHostedCheckout();
+$body->hostedCheckoutSpecificInput->paymentProductFilters->restrictTo = new \Ingenico\Connect\Sdk\Domain\Definitions\PaymentProductFilter();
+$body->hostedCheckoutSpecificInput->paymentProductFilters->restrictTo->groups = ['cards'];
+
 
 $response = $client->merchant("1221")->hostedcheckouts()->create($body);
 
