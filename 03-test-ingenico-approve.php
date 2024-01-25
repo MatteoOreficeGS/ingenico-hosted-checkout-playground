@@ -43,8 +43,8 @@ $response = $client->merchant("1221")->payments()->approve($argv[1], $body);
 var_dump($response->toJson());
 
 
-$body = new \Ingenico\Connect\Sdk\Domain\Payment\CapturePaymentRequest();
-$body->amount = 3500;
-
-$response = $client->merchant("1221")->payments()->capture($argv[1], $body);
-var_dump($response->toJson());
+//$body = new \Ingenico\Connect\Sdk\Domain\Payment\CapturePaymentRequest();
+//$body->amount = 3500;
+//
+//$response = $client->merchant("1221")->payments()->capture($argv[1], $body);
+//var_dump($response->toJson());
