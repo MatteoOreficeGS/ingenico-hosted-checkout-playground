@@ -6,6 +6,8 @@ use Ingenico\Connect\Sdk\CommunicatorConfiguration as CommunicatorConfigurationA
 use Ingenico\Connect\Sdk\DefaultConnection as DefaultConnectionAlias;
 use Ingenico\Connect\Sdk\Domain\Hostedcheckout\CreateHostedCheckoutRequest;
 use Ingenico\Connect\Sdk\Domain\Payment\Definitions\Order as OrderAlias;
+use Ingenico\Connect\Sdk\Domain\Definitions\Card;
+use Ingenico\Connect\Sdk\Domain\Payment\Definitions\CardPaymentMethodSpecificInput;
 
 require_once 'vendor/autoload.php';
 
@@ -25,16 +27,6 @@ $communicator = new CommunicatorAlias($connection, $communicatorConfiguration);
 
 $client = new ClientAlias($communicator);
 $client->setClientMetaInfo(json_encode(['msg'=>"consumer specific JSON meta info"]));
-//
-//$card = new \Ingenico\Connect\Sdk\Domain\Definitions\Card();
-//$card->cardNumber = "4012000033330026";
-//$card->cardholderName = "Wile E. Coyote";
-//$card->cvv = "123";
-//$card->expiryDate = "0624";
-//
-//$cardPaymentMethodSpecificInput = new \Ingenico\Connect\Sdk\Domain\Payment\Definitions\CardPaymentMethodSpecificInput();
-//$cardPaymentMethodSpecificInput->card = $card;
-//$cardPaymentMethodSpecificInput->paymentProductId = 1;
 
 $amountOfMoney = new \Ingenico\Connect\Sdk\Domain\Definitions\AmountOfMoney();
 $amountOfMoney->amount = 3500;
@@ -54,16 +46,15 @@ $order->customer = $customer;
 
 $body = new CreateHostedCheckoutRequest();
 $body->order = $order;
-//$body->cardPaymentMethodSpecificInput = $cardPaymentMethodSpecificInput;
+
+
+$cardPaymentMethodSpecificInput = new CardPaymentMethodSpecificInput();
+$cardPaymentMethodSpecificInput->authorizationMode = 'SALE';
+$body->cardPaymentMethodSpecificInput = $cardPaymentMethodSpecificInput;
 
 $hcsi = new \Ingenico\Connect\Sdk\Domain\Hostedcheckout\Definitions\HostedCheckoutSpecificInput();
 $hcsi->returnUrl = $_ENV['RETURN_URL'] ?? 'https://www.gsped.it';
 $hcsi->showResultPage = true;
-
-
-$body->cardPaymentMethodSpecificInput = new \Ingenico\Connect\Sdk\Domain\Payment\Definitions\CardPaymentMethodSpecificInput();
-$body->cardPaymentMethodSpecificInput->tokenize = true;
-
 $body->hostedCheckoutSpecificInput = $hcsi;
 
 $response = $client->merchant("1221")->hostedcheckouts()->create($body);
