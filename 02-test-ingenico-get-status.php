@@ -15,6 +15,7 @@ $dotenv->load();
 //$callContext = new CallContext();
 //$callContext->setIdempotenceKey($idempotenceKey);
 
+$logFile = fopen('hosted-checkout-test.log','a');
 
 $communicatorConfiguration =
     new CommunicatorConfigurationAlias(
@@ -24,6 +25,7 @@ $connection = new DefaultConnectionAlias();
 $communicator = new CommunicatorAlias($connection, $communicatorConfiguration);
 
 $client = new ClientAlias($communicator);
+$client->enableLogging(new \Ingenico\Connect\Sdk\ResourceLogger($logFile));
 
 // hosted checkout id
 $response = $client->merchant("1221")->hostedcheckouts()->get($argv[1]);

@@ -12,6 +12,8 @@ require_once 'vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
+$logFile = fopen('hosted-checkout-test.log','a');
+
 $communicatorConfiguration =
     new CommunicatorConfigurationAlias(
         $_ENV['API_KEY'], $_ENV['API_SECRET'], 'https://eu.sandbox.api-ingenico.com', 'GSped'
@@ -21,6 +23,7 @@ $communicator = new CommunicatorAlias($connection, $communicatorConfiguration);
 
 $client = new ClientAlias($communicator);
 $client->setClientMetaInfo(json_encode(['msg'=>"consumer specific JSON meta info"]));
+$client->enableLogging(new \Ingenico\Connect\Sdk\ResourceLogger($logFile));
 
 
 $references = new \Ingenico\Connect\Sdk\Domain\Payment\Definitions\OrderReferencesApprovePayment();

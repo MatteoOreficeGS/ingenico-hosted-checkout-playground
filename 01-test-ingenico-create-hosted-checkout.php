@@ -17,6 +17,8 @@ $dotenv->load();
 //$callContext = new CallContext();
 //$callContext->setIdempotenceKey($idempotenceKey);
 
+$logFile = fopen('hosted-checkout-test.log','a');
+
 
 $communicatorConfiguration =
     new CommunicatorConfigurationAlias(
@@ -27,6 +29,7 @@ $communicator = new CommunicatorAlias($connection, $communicatorConfiguration);
 
 $client = new ClientAlias($communicator);
 $client->setClientMetaInfo(json_encode(['msg'=>"consumer specific JSON meta info"]));
+$client->enableLogging(new \Ingenico\Connect\Sdk\ResourceLogger($logFile));
 
 $amountOfMoney = new \Ingenico\Connect\Sdk\Domain\Definitions\AmountOfMoney();
 $amountOfMoney->amount = 3500;
