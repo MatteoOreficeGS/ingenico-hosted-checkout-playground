@@ -22,7 +22,7 @@ $logFile = fopen('hosted-checkout-test.log','a');
 
 $communicatorConfiguration =
     new CommunicatorConfigurationAlias(
-        $_ENV['API_KEY'], $_ENV['API_SECRET'], 'https://eu.sandbox.api-ingenico.com', 'GSped'
+        $_ENV['API_KEY'], $_ENV['API_SECRET'], 'https://eu.preprod.api-ingenico.com', 'GSped'
     );
 $connection = new DefaultConnectionAlias();
 $communicator = new CommunicatorAlias($connection, $communicatorConfiguration);
@@ -60,12 +60,12 @@ $hcsi->showResultPage = true;
 $body->hostedCheckoutSpecificInput = $hcsi;
 $body->hostedCheckoutSpecificInput->paymentProductFilters = new \Ingenico\Connect\Sdk\Domain\Hostedcheckout\Definitions\PaymentProductFiltersHostedCheckout();
 $body->hostedCheckoutSpecificInput->paymentProductFilters->restrictTo = new \Ingenico\Connect\Sdk\Domain\Definitions\PaymentProductFilter();
-//$body->hostedCheckoutSpecificInput->paymentProductFilters->restrictTo->groups = ['cards'];
-$body->hostedCheckoutSpecificInput->paymentProductFilters->restrictTo->products = [1];
+$body->hostedCheckoutSpecificInput->paymentProductFilters->restrictTo->groups = ['cards'];
+//$body->hostedCheckoutSpecificInput->paymentProductFilters->restrictTo->products = [1];
 
 
 
-$response = $client->merchant("1221")->hostedcheckouts()->create($body);
+$response = $client->merchant(2502)->hostedcheckouts()->create($body);
 
 // questi vanno salvati
 printf("RETURNMAC         : %s\n",$response->RETURNMAC);
