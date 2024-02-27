@@ -28,11 +28,10 @@ $client = new ClientAlias($communicator);
 $client->enableLogging(new \Ingenico\Connect\Sdk\ResourceLogger($logFile));
 
 // hosted checkout id
-$response = $client->merchant("1221")->hostedcheckouts()->get($argv[1]);
+$response = $client->merchant("1221")->hostedcheckouts()->delete($argv[1]);
 
 printf("hostedCheckoutId                    : %s\n",$argv[1]);
 printf("status                              : %s\n",$response?->status);
-printf("id                                  : %s\n",$response?->createdPaymentOutput?->payment?->id);
 printf("payment.status                      : %s\n",$response?->createdPaymentOutput?->payment?->status);
 printf("payment.statusOutput.statusCategory : %s\n",$response?->createdPaymentOutput?->payment?->statusOutput?->statusCategory);
 printf("payment.statusOutput.isAuthorized   : %s\n",$response?->createdPaymentOutput?->payment?->statusOutput?->isAuthorized);
@@ -40,5 +39,5 @@ printf("tokens                              : %s\n",$response?->createdPaymentOu
 printf("tokenizationSucceeded               : %s\n",$response?->createdPaymentOutput?->tokenizationSucceeded);
 
 printf("\nCall this php script to approve the payment\n> php 03-test-ingenico-approve.php %s\n",
-    $response?->createdPaymentOutput?->payment?->id);
+    $response?->createdPaymentOutput?->payment->id);
 

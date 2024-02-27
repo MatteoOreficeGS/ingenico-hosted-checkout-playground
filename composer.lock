@@ -242,19 +242,22 @@
         },
         {
             "name": "ingenico-epayments/connect-sdk-php",
-            "version": "6.20.0",
+            "version": "6.47.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Ingenico-ePayments/connect-sdk-php.git",
-                "reference": "169df9c0e95b83ef9b63c70a5cfeeaeaf7b86694"
+                "reference": "f1aac4733428aa24db7dbb3623074774e6679f19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Ingenico-ePayments/connect-sdk-php/zipball/169df9c0e95b83ef9b63c70a5cfeeaeaf7b86694",
-                "reference": "169df9c0e95b83ef9b63c70a5cfeeaeaf7b86694",
+                "url": "https://api.github.com/repos/Ingenico-ePayments/connect-sdk-php/zipball/f1aac4733428aa24db7dbb3623074774e6679f19",
+                "reference": "f1aac4733428aa24db7dbb3623074774e6679f19",
                 "shasum": ""
             },
             "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
                 "php": ">=5.4",
                 "robtimus/multipart": "~1.0"
             },
@@ -277,19 +280,19 @@
             "authors": [
                 {
                     "name": "Ingenico ePayments",
-                    "homepage": "http://www.ingenico.com/epayments/"
+                    "homepage": "https://www.ingenico.com/epayments/"
                 }
             ],
             "description": "PHP SDK to communicate with the Ingenico ePayments platform server-to-server API",
-            "homepage": "http://www.ingenico.com/epayments/",
+            "homepage": "https://www.ingenico.com/epayments/",
             "keywords": [
                 "sdk"
             ],
             "support": {
                 "issues": "https://github.com/Ingenico-ePayments/connect-sdk-php/issues",
-                "source": "https://github.com/Ingenico-ePayments/connect-sdk-php/tree/6.20.0"
+                "source": "https://github.com/Ingenico-ePayments/connect-sdk-php/tree/6.47.0"
             },
-            "time": "2021-04-09T11:42:54+00:00"
+            "time": "2024-02-14T08:09:45+00:00"
         },
         {
             "name": "nesbot/carbon",
